@@ -9,7 +9,9 @@ public class CategoriaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "categoria")
     private String nome;
+    @Column(name = "descricao_cat")
     private String descricao;
 
     public Long getId() {
@@ -20,12 +22,10 @@ public class CategoriaModel {
         this.id = id;
     }
 
-    @Column(name = "categoria")
     public String getNome() { return nome; }
 
     public void setNome(String nome) { this.nome = nome; }
 
-    @Column(name = "descricao_cat")
     public String getDescricao() { return descricao; }
 
     public void setDescricao(String descricao) { this.descricao = descricao; }
