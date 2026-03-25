@@ -2,7 +2,6 @@ package com.bn.demo.services;
 
 import com.bn.demo.models.CategoriaModel;
 import com.bn.demo.repositories.CategoriaRepository;
-import com.bn.demo.repositories.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,26 +14,26 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-    public List<CategoriaModel> findAll(){
+    public List<CategoriaModel> buscarTodasCategorias(){
         return  categoriaRepository.findAll();
     }
 
-    public CategoriaModel criarPessoa(CategoriaModel categoriaModel){
+    public CategoriaModel criarCategoria(CategoriaModel categoriaModel){
         return  categoriaRepository.save(categoriaModel);
     }
 
-    public Optional<CategoriaModel> buscarid(Long id){
+    public Optional<CategoriaModel> buscarCategoriaId(Long id){
         return  categoriaRepository.findById(id);
     }
 
-    public CategoriaModel atualizar(Long id, CategoriaModel categoriaModel){
+    public CategoriaModel atualizarCategoria(Long id, CategoriaModel categoriaModel){
         CategoriaModel model = categoriaRepository.findById(id).get();
         model.setNome(categoriaModel.getNome());
         model.setDescricao(categoriaModel.getDescricao());
         return categoriaRepository.save(model);
     }
 
-    public void deletar(Long id){
+    public void deletarCategoria(Long id){
         categoriaRepository.deleteById(id);
     }
 

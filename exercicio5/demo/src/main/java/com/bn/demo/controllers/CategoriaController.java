@@ -19,14 +19,14 @@ public class CategoriaController {
     private CategoriaService categoriaService;
 
     @GetMapping
-        public ResponseEntity<List<CategoriaModel> > findAll(){
-          List<CategoriaModel> requeste = categoriaService.findAll();
+        public ResponseEntity<List<CategoriaModel> > buscarTodasAsCategorias(){
+          List<CategoriaModel> requeste = categoriaService.buscarTodasCategorias();
         return ResponseEntity.ok().body(requeste);
     }
 
     @PostMapping
-    public ResponseEntity <CategoriaModel> criarPessoa(@RequestBody CategoriaModel categoriaModel){
-        CategoriaModel requeste = categoriaService.criarPessoa(categoriaModel);
+    public ResponseEntity <CategoriaModel> criarCategorias(@RequestBody CategoriaModel categoriaModel){
+        CategoriaModel requeste = categoriaService.criarCategoria(categoriaModel);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
                 .path("/{id}").buildAndExpand(categoriaModel.getId())
                 .toUri();
@@ -34,23 +34,20 @@ public class CategoriaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletar (@PathVariable Long id){
-        categoriaService.deletar(id);
+    public ResponseEntity<?> deletarCategoria(@PathVariable Long id){
+        categoriaService.deletarCategoria(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
-    public Optional<CategoriaModel> buscarId(@PathVariable Long id){
-        return  categoriaService.buscarid(id);
+    public Optional<CategoriaModel> buscarCategoriaPorId(@PathVariable Long id){
+        return  categoriaService.buscarCategoriaId(id);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity <CategoriaModel> atualizar(@PathVariable Long id, @RequestBody CategoriaModel CategoriaModel){
-        CategoriaModel requeste = categoriaService.atualizar(id, CategoriaModel);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
-                .path("/{id}").buildAndExpand(CategoriaModel.getId())
-                .toUri();
-        return  ResponseEntity.created(uri).body(requeste);
+        CategoriaModel requeste = categoriaService.atualizarCategoria(id, CategoriaModel);
+        return  ResponseEntity.ok().body(requeste);
 
     }
 
